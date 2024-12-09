@@ -28,10 +28,14 @@
     </property>
     <layout class="QGridLayout" name="gridLayout">
      <item row="0" column="0">
-      <widget class="QLineEdit" name="lineEditIpAddress"/>
+      <widget class="QLineEdit" name="lineEditIpAddress">
+       <property name="text">
+        <string>192.168.9.246</string>
+       </property>
+      </widget>
      </item>
      <item row="0" column="1">
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="pushButtonLocalHost">
        <property name="text">
         <string>LocalHost</string>
        </property>
@@ -61,13 +65,20 @@
        </property>
       </widget>
      </item>
+     <item row="1" column="1">
+      <widget class="QLabel" name="labelConnectionStatusInfo">
+       <property name="text">
+        <string>Disconnected</string>
+       </property>
+      </widget>
+     </item>
     </layout>
    </widget>
    <widget class="QProgressBar" name="progressBarUpdate">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>190</y>
+      <y>410</y>
       <width>118</width>
       <height>23</height>
      </rect>
@@ -81,50 +92,112 @@
      <rect>
       <x>260</x>
       <y>10</y>
-      <width>271</width>
-      <height>161</height>
+      <width>136</width>
+      <height>89</height>
      </rect>
     </property>
     <property name="title">
      <string>Local bin file</string>
     </property>
-    <widget class="QPushButton" name="pushButtonSearchBin">
+    <layout class="QGridLayout" name="gridLayout_2">
+     <item row="0" column="0" colspan="2">
+      <widget class="QPushButton" name="pushButtonSearchBin">
+       <property name="text">
+        <string>Search</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Bin size:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QLabel" name="labelBinSizeInfo">
+       <property name="minimumSize">
+        <size>
+         <width>40</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>0</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="2">
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>MB</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_3">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>170</y>
+      <width>291</width>
+      <height>181</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Ota management</string>
+    </property>
+    <widget class="QPushButton" name="pushButtonStartOta">
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>30</y>
+       <y>70</y>
        <width>80</width>
        <height>24</height>
       </rect>
      </property>
      <property name="text">
-      <string>Search</string>
+      <string>Start OTA</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label">
+    <widget class="QPushButton" name="pushButtonStopOta">
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>70</y>
-       <width>49</width>
-       <height>16</height>
+       <y>100</y>
+       <width>80</width>
+       <height>24</height>
       </rect>
      </property>
      <property name="text">
-      <string>Bin size:</string>
+      <string>Stop OTA</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_2">
+    <widget class="QRadioButton" name="radioButtonManualOta">
      <property name="geometry">
       <rect>
-       <x>90</x>
-       <y>70</y>
-       <width>49</width>
-       <height>16</height>
+       <x>10</x>
+       <y>30</y>
+       <width>91</width>
+       <height>22</height>
       </rect>
      </property>
      <property name="text">
-      <string>TextLabel</string>
+      <string>Manual OTA</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButtonManualSendPkg">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>130</y>
+       <width>131</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Send Required pkg</string>
      </property>
     </widget>
    </widget>

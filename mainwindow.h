@@ -22,8 +22,12 @@ public:
 private slots:
 
     void on_pushButtonSearchBin_clicked();
-
     void on_pushButtonLocalHost_clicked();
+    void on_pushButtonConnect_clicked();
+    void on_pushButtonDisconnect_clicked();
+
+
+    void on_pushButtonStartOta_clicked();
 
 private:
     Ui::MainWindow *ui;

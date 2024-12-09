@@ -66,16 +66,11 @@ void FileDialog::openFile()
         return;
     }
 
-
     m_fileSize = file.size();
 
     m_data = file.readAll();
 
     emit fileLoaded(m_fileSize);
-
-    qDebug()<< "File size: " << m_fileSize << " bytes. \n" << m_data;
-
-
 
     file.close();
     qDebug() << "File closed!";
