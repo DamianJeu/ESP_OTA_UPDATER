@@ -27,6 +27,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(OtaUpdater
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
+        ota_handler/ota_handler.h ota_handler/ota_handler.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET OtaUpdater APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
