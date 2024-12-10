@@ -68,6 +68,8 @@ void Client::disconnectFromServer()
  */
 void Client::sendDataToServer(const QByteArray &data)
 {
+
+
     if(socket.state() == QAbstractSocket::UnconnectedState)
     {
         qDebug() << "Not connected";
@@ -77,6 +79,8 @@ void Client::sendDataToServer(const QByteArray &data)
     socket.write(data);
     socket.flush();
     socket.waitForBytesWritten();
+
+    qDebug()<<"Data sent to server: " << data.toHex() << ", size: "<< data.size();
 }
 
 /**

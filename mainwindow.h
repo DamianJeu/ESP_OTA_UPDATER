@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "file_dialog/filedialog.h"
 #include "tcp_client/client.h"
+#include "ota_handler/ota_handler.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -35,5 +36,11 @@ private:
     FileDialog *fileDialog;
 
     Client *client;
+
+    Ota_handler *ota_handler;
+
+
+    quint64 fileSize = 0;
+    bool isConnected = false;
 };
 #endif // MAINWINDOW_H

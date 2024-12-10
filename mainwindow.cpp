@@ -10,20 +10,30 @@ MainWindow::MainWindow(QWidget *parent)
     //my objects
     fileDialog = new FileDialog(this);
     client = new Client(this);
+    ota_handler = new Ota_handler(this);
 
     connect(client, &Client::connectedToServer, this, [this](){
         ui->labelConnectionStatusInfo->setText("Connected");
         ui->labelConnectionStatusInfo->setStyleSheet("QLabel { background-color : green; }");
+        isConnected = true;
     });
 
     connect(client, &Client::disconnectedFromServer, this, [this](){
         ui->labelConnectionStatusInfo->setText("Disconnected");
         ui->labelConnectionStatusInfo->setStyleSheet("");
+        isConnected = false;
     });
 
     connect(fileDialog,&FileDialog::fileLoaded, this, [this](quint64 fileSize){
-        ui->labelBinSizeInfo->setText(QString::number(fileSize));
+        ui->labelBinSizeInfo->setText(QString::number(qCeil(fileSize/1024)));
+        this->fileSize = fileSize;
     });
+
+    connect(client, &Client::dataReceived, this, [this](const QByteArray &data){
+        ui->textBrowserRawData->append(data.toHex());
+    });
+
+    connect(ota_handler, &Ota_handler::send_data_pkg, client, &Client::sendDataToServer);
 }
 
 MainWindow::~MainWindow()
@@ -67,10 +77,16 @@ void MainWindow::on_pushButtonDisconnect_clicked()
 
 void MainWindow::on_pushButtonStartOta_clicked()
 {
+    if(fileSize && isConnected)
+    {
 
-    QByteArray data;
-    data.resize(1);
-    data[0] = 0x3c;
-    client->sendDataToServer(data);
+        ota_handler->send_start_ota(fileSize);
+
+    }
+    else
+    {
+        qDebug()<<"File size or connection status is not valid" << "File size: " << fileSize << ", Connection status: " << isConnected;
+
+    }
 }
 

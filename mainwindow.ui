@@ -130,7 +130,7 @@
      <item row="1" column="2">
       <widget class="QLabel" name="label_2">
        <property name="text">
-        <string>MB</string>
+        <string>kB</string>
        </property>
       </widget>
      </item>
@@ -200,6 +200,16 @@
       <string>Send Required pkg</string>
      </property>
     </widget>
+   </widget>
+   <widget class="QTextBrowser" name="textBrowserRawData">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>160</y>
+      <width>256</width>
+      <height>192</height>
+     </rect>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

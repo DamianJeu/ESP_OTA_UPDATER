@@ -7,37 +7,35 @@
 
 enum class ota_state
 {
-    OTA_INFO,
-    DOWNLOADING,
-    FINISH,
+    OTA_START_CMD=0x10,
+    OTA_DATA_CMD=0x21,
+    OTA_FINISH_CMD=0x32,
+    OTA_CANCEL_CMD=0x43,
+    OTA_GET_DATA_CMD=0x54,
+    OTA_SUCCESS_CMD=0x65,
 };
 
-class ota_handler : public QObject
+class Ota_handler : public QObject
 {
     Q_OBJECT
 public:
-    explicit ota_handler(QObject *parent = nullptr);
+    explicit Ota_handler(QObject *parent = nullptr);
 
 signals:
 
-  void send_data_pkg(QByteArray data);
-
-
+    void send_data_pkg(QByteArray data);
 
 public slots:
 
-    quint8 send_start_ota();
-    quint8 send_stop_ota();
-    quint8 send_pkg(QByteArray pkg);
+    qint8 send_start_ota(quint64 fileSize);
+    qint8 send_stop_ota();
+    qint8 send_pkg(ota_state cmd, QByteArray pkg);
 
     void on_data_received(const QByteArray &data);
 
-
-
 private:
 
-
-
+    bool autoSendPkg = false;
 
 };
 
