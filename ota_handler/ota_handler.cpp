@@ -1,4 +1,9 @@
 #include "ota_handler.h"
+#include "../json_parser/json_parser.h"
+#include <QDataStream>
+#include <QJsonDocument>
+#include <QJsonObject>
+
 
 Ota_handler::Ota_handler(QObject *parent)
     : QObject{parent}
@@ -6,23 +11,33 @@ Ota_handler::Ota_handler(QObject *parent)
 
 qint8 Ota_handler::send_start_ota(quint64 fileSize)
 {
-    QByteArray pkg;
-    QDataStream stream(&pkg, QIODevice::WriteOnly);
+     QByteArray pkg;
+     QDataStream stream(&pkg, QIODevice::WriteOnly);
 
-    QString data = QString("%1").arg(static_cast<quint8>(ota_state::OTA_DATA_CMD), 2, 16, QLatin1Char('0')).toUpper()
-                   + ", file size: " + QString::number(fileSize);
+     QString data = "file size: " + QString::number(fileSize);
 
-    pkg.append(data.toUtf8());
 
-    qDebug() << "file size from send_start_ota: " << pkg;
 
-    if (pkg.isEmpty())
-    {
-        qDebug() << "Ota_handler, Error: empty pkg";
-        return static_cast<quint8>(-1);
-    }
+    QString headerID = "WOT-31";
+
+    JsonParser * json = new JsonParser();
+
+    json->setHeaderID(headerID);
+    json->setHeaderType("OTA");
+    json->setCommand( QString::number(static_cast<int>(ota_state::OTA_INIT_CMD),16));
+    json->setJsonMessage(data);
+
+    json->createJsonFile();
+
+    QJsonObject jsonObj = json->createJsonFile();
+
+    pkg = QJsonDocument(jsonObj).toJson();
 
     emit send_data_pkg(pkg);
+
+    delete json;
+
+
 
     return 0;
 }

@@ -7,7 +7,7 @@
 
 enum class ota_state
 {
-    OTA_START_CMD=0x10,
+    OTA_INIT_CMD=0x10,
     OTA_DATA_CMD=0x21,
     OTA_FINISH_CMD=0x32,
     OTA_CANCEL_CMD=0x43,

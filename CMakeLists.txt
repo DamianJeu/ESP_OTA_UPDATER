@@ -21,6 +21,8 @@ set(PROJECT_SOURCES
         file_dialog/filedialog.h
         tcp_client/client.cpp
         tcp_client/client.h
+        json_parser/json_parser.cpp
+        json_parser/json_parser.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
