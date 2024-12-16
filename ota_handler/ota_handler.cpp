@@ -11,12 +11,10 @@ Ota_handler::Ota_handler(QObject *parent)
 
 qint8 Ota_handler::send_start_ota(quint64 fileSize)
 {
-     QByteArray pkg;
-     QDataStream stream(&pkg, QIODevice::WriteOnly);
+    QByteArray pkg;
+    QDataStream stream(&pkg, QIODevice::WriteOnly);
 
-     QString data = "file size: " + QString::number(fileSize);
-
-
+    QString data = "file size: " + QString::number(fileSize);
 
     QString headerID = "WOT-31";
 
@@ -37,8 +35,6 @@ qint8 Ota_handler::send_start_ota(quint64 fileSize)
 
     delete json;
 
-
-
     return 0;
 }
 
@@ -57,8 +53,6 @@ qint8 Ota_handler::send_pkg(ota_state cmd, QByteArray pkg)
 
 void Ota_handler::on_data_received(const QByteArray &data)
 {
-
-
 
     if(data.size())
     {

@@ -62,7 +62,6 @@ QString JsonParser::jsonMessage() const
     return m_jsonMessage;
 }
 
-
 QString JsonParser::command() const
 {
     return m_command;
