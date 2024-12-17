@@ -19,8 +19,8 @@ public:
     QString headerType() const;
     void setHeaderType(const QString &newHeaderType);
 
-    QString command() const;
-    void setCommand(const QString & newCommand);
+    quint8 command() const;
+    void setCommand(const quint8 & newCommand);
 
     QString jsonMessage() const;
     void setJsonMessage(const QString &newJsonSize);
@@ -42,7 +42,7 @@ private:
 QString m_headerID;
 QString m_headerType;
 QString m_jsonMessage;
-QString m_command;
+quint8 m_command;
 
 
 QJsonObject m_json;

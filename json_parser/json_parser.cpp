@@ -62,12 +62,12 @@ QString JsonParser::jsonMessage() const
     return m_jsonMessage;
 }
 
-QString JsonParser::command() const
+quint8 JsonParser::command() const
 {
     return m_command;
 }
 
-void JsonParser::setCommand(const QString &newCommand)
+void JsonParser::setCommand(const quint8 &newCommand)
 {
     m_command = newCommand;
 }

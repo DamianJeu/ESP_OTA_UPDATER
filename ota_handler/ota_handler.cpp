@@ -22,7 +22,7 @@ qint8 Ota_handler::send_start_ota(quint64 fileSize)
 
     json->setHeaderID(headerID);
     json->setHeaderType("OTA");
-    json->setCommand( QString::number(static_cast<int>(ota_state::OTA_INIT_CMD),16));
+    json->setCommand(static_cast<int>(ota_state::OTA_INIT_CMD));
     json->setJsonMessage(data);
 
     json->createJsonFile();
