@@ -24,6 +24,9 @@ public:
 signals:
 
     void send_data_pkg(QByteArray data);
+    void send_prepare_chunk(quint64 from, quint64 to);
+
+
 
 public slots:
 
@@ -31,11 +34,22 @@ public slots:
     qint8 send_stop_ota();
     qint8 send_pkg(ota_state cmd, QByteArray pkg);
 
+    void set_device_id(const QString &device_id);
+
     void on_data_received(const QByteArray &data);
+
+    void on_send_data_chunk(const QByteArray &data);
 
 private:
 
     bool autoSendPkg = false;
+
+    void parse_data(const QJsonDocument &data);
+    void prepare_data_chunk(quint64 from, quint64 to);
+    void on_get_data_cmd(const QJsonDocument &data);
+
+
+    QString m_deviceID;
 
 };
 

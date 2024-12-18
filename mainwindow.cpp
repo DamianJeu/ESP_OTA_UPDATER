@@ -34,6 +34,10 @@ MainWindow::MainWindow(QWidget *parent)
     });
 
     connect(ota_handler, &Ota_handler::send_data_pkg, client, &Client::sendDataToServer);
+    connect(client, &Client::dataReceived, ota_handler, &Ota_handler::on_data_received);
+    connect(ota_handler, &Ota_handler::send_prepare_chunk, fileDialog, &FileDialog::read_bytes_from);
+    connect(fileDialog, &FileDialog::sendData, ota_handler, &Ota_handler::on_send_data_chunk);
+
 }
 
 MainWindow::~MainWindow()
@@ -77,10 +81,11 @@ void MainWindow::on_pushButtonDisconnect_clicked()
 
 void MainWindow::on_pushButtonStartOta_clicked()
 {
-    if(fileSize && isConnected)
+    if(fileSize && isConnected && !ui->lineEditDeviceID->text().isEmpty())
     {
 
         ota_handler->send_start_ota(fileSize);
+        ota_handler->set_device_id(ui->lineEditDeviceID->text());
 
     }
     else

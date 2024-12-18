@@ -200,6 +200,19 @@
       <string>Send Required pkg</string>
      </property>
     </widget>
+    <widget class="QLineEdit" name="lineEditDeviceID">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>30</y>
+       <width>108</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>WOT-31</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QTextBrowser" name="textBrowserRawData">
     <property name="geometry">

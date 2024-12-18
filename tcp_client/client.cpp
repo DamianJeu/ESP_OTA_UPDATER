@@ -87,8 +87,6 @@ void Client::sendDataToServer(const QByteArray &data)
 void Client::readyRead()
 {
     QByteArray data = socket.readAll();
-
-    qDebug()<< "Data received from server: " << data.toHex() << ", size: "<< data.size();
     emit dataReceived(data);
 }
 
