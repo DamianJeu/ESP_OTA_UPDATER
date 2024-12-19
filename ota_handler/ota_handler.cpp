@@ -104,7 +104,7 @@ void Ota_handler::on_send_data_chunk(const QByteArray &data)
     json["id"] = m_deviceID;
     json["type"] = "OTA";
     json["command"] = static_cast<int>(ota_state::OTA_DATA_CMD);
-    json["binary"] = QString::fromUtf8(data);
+    json["binary"] = QString::fromLatin1(data.toBase64());
 
     pkg = QJsonDocument(json).toJson();
 
